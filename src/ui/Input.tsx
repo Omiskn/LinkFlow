@@ -8,7 +8,7 @@ type InputProps = {
 export default function Input({ icon: Icon, ...props }: InputProps) {
   return (
     <div
-      className="w-full px-3 py-2 bg-(--color-primary-50)/40 rounded-md
+      className="w-full px-3 py-2 bg-(--color-primary-50)/40 rounded-md shadow-(--shadow-sm)
       flex items-center gap-2
       focus-within:ring-2 focus-within:ring-(--color-primary-600)"
     >

@@ -12,7 +12,7 @@ export default function Button({
   const base = "rounded-full font-medium transition";
 
   const variants = {
-    primary: "bg-[var(--color-primary)] text-white",
+    primary: "bg-[var(--color-primary)] text-white shadow-(--shadow-sm)",
     secondary:
       "text-(--color-primary-50) text-sm px-12 py-2 bg-transparent border-2 border-(--color-primary-50) rounded-full uppercase",
   };
