@@ -14,7 +14,7 @@ export default function AuthRight({
   title,
   message,
   buttonText,
-  onClick = "",
+  // onClick = "",
   to,
 }: authRightProps) {
   return (
@@ -22,12 +22,12 @@ export default function AuthRight({
       className="
         hidden md:flex
         bg-(--color-primary-500)
-        w-[40%]
+        w-[45%]
         flex-col justify-center gap-3
         items-center px-6 text-center
       "
     >
-      <Heading color="--color-primary-0">{title}</Heading>
+      <Heading color="var(--color-grey-50)">{title}</Heading>
 
       <p className="text-(--color-primary-50) mb-4">{message}</p>
 

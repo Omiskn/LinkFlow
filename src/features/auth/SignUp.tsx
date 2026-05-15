@@ -7,7 +7,7 @@ export default function SignUp() {
   return (
     <AuthLayout>
       <AuthRight
-        to="/"
+        to="login"
         title="welcome back!"
         buttonText="Login"
         message="To keep connected with use pleae login with your personal info"

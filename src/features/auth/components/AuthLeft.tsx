@@ -24,7 +24,7 @@ export default function AuthLeft({
         flex flex-col gap-2 items-center
       "
     >
-      <Heading color="--color-primary-500">{title}</Heading>
+      <Heading color="var(--color-primary-300)">{title}</Heading>
 
       {showSocial && <SocialLogin />}
 

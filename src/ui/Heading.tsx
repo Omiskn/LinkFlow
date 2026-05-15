@@ -5,9 +5,12 @@ type HeadingProps = {
   color?: string;
 };
 
-function Heading({ children, color = "--color-primary-500" }: HeadingProps) {
+function Heading({
+  children,
+  color = "var(--color-primary-200)",
+}: HeadingProps) {
   return (
-    <h2 className={`text-(${color}) text-3xl capitalize font-bold mb-2`}>
+    <h2 className="text-3xl capitalize font-bold mb-2" style={{ color }}>
       {children}
     </h2>
   );
