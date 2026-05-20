@@ -1,8 +1,9 @@
-import { authService, type RegisterDTO } from "@/services/apiAuth";
+import { authService } from "@/services/apiAuth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import type { ApiError } from "./useVerifiyEmail";
+import type { RegisterDTO } from "@/types/user";
 
 export function useRegister() {
   const queryClient = useQueryClient();

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useCurrentUser() {
   const {
-    data: currentUser,
+    data = {},
     isLoading,
     error,
   } = useQuery({
@@ -11,5 +11,5 @@ export function useCurrentUser() {
     queryFn: authService.getMe,
   });
 
-  return { currentUser, isLoading, error };
+  return { currentUser: data.data?.user, isLoading, error };
 }

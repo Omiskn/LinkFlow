@@ -1,15 +1,5 @@
-import { api } from "@/lib/axios";
-
-export type RegisterDTO = {
-  username: string;
-  email: string;
-  password: string;
-};
-
-export type LoginDTO = {
-  email: string;
-  password: string;
-};
+import { api, apiWithToken } from "@/lib/axios";
+import type { LoginDTO, RegisterDTO, UpdateUserDTO } from "@/types/user";
 
 export const authService = {
   register: async (data: RegisterDTO) => {
@@ -26,6 +16,28 @@ export const authService = {
     const { data: res } = await api.get("/users/verify-email", {
       params: { token },
     });
+    return res;
+  },
+
+  updateMe: async (data: UpdateUserDTO) => {
+    const formData = new FormData();
+
+    formData.append("username", data.username);
+
+    if (data.display_name) {
+      formData.append("display_name", data.display_name);
+    }
+
+    if (data.bio) {
+      formData.append("bio", data.bio);
+    }
+
+    if (data.profileImage) {
+      formData.append("profileImage", data.profileImage);
+    }
+    console.log(formData);
+
+    const { data: res } = await apiWithToken.patch("/users/me", formData);
     return res;
   },
 
