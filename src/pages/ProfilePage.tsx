@@ -10,7 +10,7 @@ import {
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import ProfileAvatar from "@/features/profile/components/ProfileAvatar";
 import ProfileForm from "@/features/profile/components/ProfileForm";
-import profileFormSchema from "@/features/profile/profileFormScheme";
+import profileFormSchema from "@/features/profile/profileFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Save } from "lucide-react";
@@ -20,17 +20,15 @@ import * as z from "zod";
 // AtSign
 
 export default function ProfilePage() {
-  const {
-    currentUser: { username, display_name, bio },
-    isLoading: isLoadingUser,
-  } = useCurrentUser();
+  const { currentUser: data } = useCurrentUser();
 
+  const currentUser = data.data?.user;
   const form = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      username: username ?? "",
-      display_name: display_name ?? "",
-      bio: bio ?? "",
+      username: currentUser.username ?? "",
+      display_name: currentUser.display_name ?? "",
+      bio: currentUser.bio ?? "",
       profileImage: undefined,
     },
   });

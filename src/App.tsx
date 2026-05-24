@@ -14,6 +14,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import VerifyEmailPage from "./pages/VerifyEmailPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
+import { ThemeProvider } from "./contexts/theme-provider";
+import { ThemeColorProvider } from "./contexts/Color-theme-Provider";
+import { ThemeFontProvider } from "./contexts/Font-theme-provider";
+import { ThemeBorderProvider } from "./contexts/Border-theme-Provider";
+import AppearanceProvider from "./contexts/AppearanceProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -23,23 +28,39 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<ProtectedRoute />}>
-            <Route element={<AppLayout />}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/dashboard/links" element={<Links />} />
-              <Route path="/dashboard/profile" element={<Profile />} />
-              <Route path="/dashboard/appearance" element={<Appearance />} />
-            </Route>
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot_password" element={<ForgotPassword />} />
-          <Route path="/verify_email" element={<VerifyEmailPage />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider>
+        {/* <ThemeColorProvider>
+          <ThemeFontProvider>
+            <ThemeBorderProvider> */}
+        <AppearanceProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<ProtectedRoute />}>
+                <Route element={<AppLayout />}>
+                  <Route
+                    path="/"
+                    element={<Navigate to="/dashboard" replace />}
+                  />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/dashboard/links" element={<Links />} />
+                  <Route path="/dashboard/profile" element={<Profile />} />
+                  <Route
+                    path="/dashboard/appearance"
+                    element={<Appearance />}
+                  />
+                </Route>
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgot_password" element={<ForgotPassword />} />
+              <Route path="/verify_email" element={<VerifyEmailPage />} />
+            </Routes>
+          </BrowserRouter>
+        </AppearanceProvider>
+        {/* </ThemeBorderProvider>
+          </ThemeFontProvider>
+        </ThemeColorProvider> */}
+      </ThemeProvider>
       <Toaster
         position="top-center"
         gutter={12}

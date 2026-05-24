@@ -11,5 +11,5 @@ export function useCurrentUser() {
     queryFn: authService.getMe,
   });
 
-  return { currentUser: data.data?.user, isLoading, error };
+  return { currentUser: data, isLoading, error };
 }

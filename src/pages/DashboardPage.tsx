@@ -169,7 +169,9 @@ export default function Dashboard() {
 
                 <XAxis dataKey="name" />
 
-                <Tooltip />
+                <Tooltip
+                  contentStyle={{ backgroundColor: "var(--color-grey-50)" }}
+                />
 
                 <Line
                   type="monotone"
@@ -197,7 +199,7 @@ export default function Dashboard() {
             <CardDescription>Distribution by country</CardDescription>
           </CardHeader>
 
-          <CardContent className="h-[350px]">
+          <CardContent className="h-87.5">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -215,7 +217,9 @@ export default function Dashboard() {
                   ))}
                 </Pie>
 
-                <Tooltip />
+                <Tooltip
+                  contentStyle={{ backgroundColor: "var(--color-grey-50)" }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
@@ -233,14 +237,16 @@ export default function Dashboard() {
           <CardDescription>Performance of your top links</CardDescription>
         </CardHeader>
 
-        <CardContent className="h-[350px]">
+        <CardContent className="h-87.5">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={barData}>
               <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
 
               <XAxis dataKey="name" />
 
-              <Tooltip />
+              <Tooltip
+                contentStyle={{ backgroundColor: "var(--color-grey-50)" }}
+              />
 
               <Bar
                 dataKey="value"

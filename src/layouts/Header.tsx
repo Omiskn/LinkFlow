@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { useLogout } from "@/features/auth/hooks/useLogout";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -26,19 +27,22 @@ export default function Header() {
     <header className="flex h-16 items-center justify-between border-b px-4 pl-14 lg:px-6 lg:pl-6 bg-(--color-grey-100)">
       <h2 className="text-base font-semibold lg:text-lg">{pageTitle}</h2>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="default">Account</Button>
-        </DropdownMenuTrigger>
+      <div className="flex items-center gap-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="default">Account</Button>
+          </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Appearance</DropdownMenuItem>
-          <DropdownMenuItem variant="destructive" onClick={logout}>
-            Logout
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Appearance</DropdownMenuItem>
+            <DropdownMenuItem variant="destructive" onClick={logout}>
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <ModeToggle />
+      </div>
     </header>
   );
 }

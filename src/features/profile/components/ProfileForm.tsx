@@ -15,7 +15,7 @@ import {
 import { Controller, type UseFormReturn } from "react-hook-form";
 import * as z from "zod";
 import { useUpdateUser } from "../hooks/useUpdateUser";
-import profileFormSchema from "../profileFormScheme";
+import profileFormSchema from "../profileFormSchema";
 
 type Props = {
   form: UseFormReturn<z.infer<typeof profileFormSchema>>;

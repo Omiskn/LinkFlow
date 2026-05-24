@@ -8,9 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import AddLinkForm, {
-  VanillaReorderList,
-} from "@/features/link/components/AddLinkForm";
+import AddLinkForm from "@/features/link/components/AddLinkForm";
 import { useState } from "react";
 
 export default function LinkPage() {
@@ -33,7 +31,7 @@ export default function LinkPage() {
         </DialogContent>
       </Dialog>
 
-      <VanillaReorderList />
+      {/* <VanillaReorderList /> */}
 
       {/* </section> */}
     </div>

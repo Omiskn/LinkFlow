@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 import { Controller, useForm, type UseFormReturn } from "react-hook-form";
 import * as z from "zod";
-import profileFormSchema from "../profileFormScheme";
+import profileFormSchema from "../profileFormSchema";
 
 type Props = {
   form: UseFormReturn<z.infer<typeof profileFormSchema>>;
@@ -16,20 +16,52 @@ type Props = {
 
 function ProfileAvatar({ form }: Props) {
   const {
-    currentUser: { profile_image },
-    isLoading: isLoadingUser,
+    currentUser: {
+      data: {
+        user: { profile_image, username },
+      },
+    },
+    isLoading,
   } = useCurrentUser();
+  const [imgLoading, setImgLoading] = useState(true);
+  const [imgError, setImgError] = useState(false);
 
   const { control } = form;
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <>
-      <Avatar className="w-45 h-45 mb-12 mt-2">
-        <AvatarImage src={profile_image} alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-        <AvatarBadge className="bg-(--color-grey-0) min-w-10 min-h-10 dark:bg-green-800">
-          <Upload className="text-(--color-primary-500) min-w-5 min-h-5" />
+      <Avatar className="w-45 h-45 mb-12 mt-2 relative">
+        {imgLoading && !imgError && (
+          <div className="absolute inset-0 flex items-center justify-center z-10 bg-(--color-grey-0) rounded-full">
+            <Spinner />
+          </div>
+        )}
+
+        <AvatarImage
+          src={profile_image}
+          alt={username}
+          onLoad={() => setImgLoading(false)}
+          onError={() => {
+            setImgLoading(false);
+            setImgError(true);
+          }}
+          className={imgLoading ? "opacity-0" : "opacity-100"}
+        />
+
+        <AvatarFallback className="uppercase">
+          {username.slice(0, 2)}
+        </AvatarFallback>
+
+        <AvatarBadge className="min-w-10 min-h-10 bg-(--color-grey-0)">
+          <Button
+            variant="ghost"
+            className="text-(--color-primary-500) w-full h-full rounded-full"
+            onClick={() => inputRef.current?.click()}
+            disabled={isLoading}
+          >
+            <Upload />
+          </Button>
         </AvatarBadge>
       </Avatar>
       <Controller
@@ -52,7 +84,11 @@ function ProfileAvatar({ form }: Props) {
 
                 field.onChange(file);
               }}
+              disabled={isLoading}
             />
+            <FieldDescription className="text-center">
+              {field.value?.name}
+            </FieldDescription>
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
         )}
@@ -62,6 +98,7 @@ function ProfileAvatar({ form }: Props) {
         variant="outline"
         className=" py-4.5 px-12 mb-2"
         onClick={() => inputRef.current?.click()}
+        disabled={isLoading}
       >
         <Upload className="text-(--color-primary-500) hover:text-red-500" />
         <span className="text-(--color-primary-500)">Upload Image</span>
@@ -75,13 +112,14 @@ function ProfileAvatar({ form }: Props) {
 
 export default ProfileAvatar;
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { Label } from "@/components/ui/label";
 // import { formScheme } from "./ProfileForm";
-import { Field, FieldError } from "@/components/ui/field";
+import { Field, FieldDescription, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
+import { Spinner } from "@/components/ui/Spinner";
 
 type FormValues = {
   image: File | null;
