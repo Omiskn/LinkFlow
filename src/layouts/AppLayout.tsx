@@ -15,3 +15,22 @@ export default function AppLayout() {
     </div>
   );
 }
+
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+// import { AppSidebar } from "@/components/ui/App-Sidebar";
+
+// { children }: { children: React.ReactNode }
+// export default function AppLayout() {
+//   return (
+//     <SidebarProvider>
+//       <AppSidebar />
+//       {/* <div className="flex flex-col flex-1">
+//         <Header /> */}
+//       <main className="flex-1 p-4 md:p-6 bg-(--color-grey-50)">
+//         <SidebarTrigger />
+//         <Outlet />
+//       </main>
+//       {/* </div> */}
+//     </SidebarProvider>
+//   );
+// }

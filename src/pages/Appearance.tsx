@@ -12,7 +12,7 @@ import {
   type FontTheme,
   type ModeTheme,
 } from "@/types/appearance";
-import AppearancePageSkeleton from "@/features/components/AppearancePageSkeleton";
+import AppearancePageSkeleton from "@/features/appearance/components/AppearancePageSkeleton";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -35,7 +35,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useAppearance } from "@/contexts/AppearanceProvider";
+import { useAppearance } from "@/providers/AppearanceProvider";
 import { useEffect } from "react";
 import { useUpdateSetting } from "@/features/appearance/hooks/useUpdateSetting";
 import { Spinner } from "@/components/ui/Spinner";

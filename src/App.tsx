@@ -14,11 +14,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import VerifyEmailPage from "./pages/VerifyEmailPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
-import { ThemeProvider } from "./contexts/theme-provider";
-import { ThemeColorProvider } from "./contexts/Color-theme-Provider";
-import { ThemeFontProvider } from "./contexts/Font-theme-provider";
-import { ThemeBorderProvider } from "./contexts/Border-theme-Provider";
-import AppearanceProvider from "./contexts/AppearanceProvider";
+import { ThemeProvider } from "./providers/theme-provider";
+// import { ThemeColorProvider } from "./providers/Color-theme-Provider";
+// import { ThemeFontProvider } from "./providers/Font-theme-provider";
+// import { ThemeBorderProvider } from "./providers/Border-theme-Provider";
+import AppearanceProvider from "./providers/AppearanceProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
