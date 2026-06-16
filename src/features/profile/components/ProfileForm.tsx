@@ -16,6 +16,7 @@ import { Controller, type UseFormReturn } from "react-hook-form";
 import * as z from "zod";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 import profileFormSchema from "../profileFormSchema";
+import CopyUrl from "./CopyUrl";
 
 type Props = {
   form: UseFormReturn<z.infer<typeof profileFormSchema>>;
@@ -25,7 +26,7 @@ function ProfileForm({ form }: Props) {
   const { updateMe, isLoading: isUpdatingUser } = useUpdateUser();
   const isLoading = isUpdatingUser;
 
-  const { handleSubmit, control } = form;
+  const { handleSubmit, control, getValues } = form;
 
   function onSubmit(data: z.infer<typeof profileFormSchema>) {
     updateMe(data);
@@ -109,6 +110,7 @@ function ProfileForm({ form }: Props) {
             </Field>
           )}
         />
+        <CopyUrl username={getValues("username")} />
       </FieldGroup>
     </form>
   );

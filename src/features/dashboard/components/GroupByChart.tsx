@@ -20,8 +20,58 @@ import { useGroupBy } from "../hooks/useGroupBy";
 import { useSearchParams } from "react-router-dom";
 import { GroupByChartSkeleton } from "./GroupByChartSkeleton";
 
-const pieColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#1aae00"];
-
+const pieColors = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#1AAE00",
+  "#8884D8",
+  "#82CA9D",
+  "#A4DE6C",
+  "#D0ED57",
+  "#FFC658",
+  "#FF6B6B",
+  "#4ECDC4",
+  "#45B7D1",
+  "#96CEB4",
+  "#FECA57",
+  "#FF9FF3",
+  "#54A0FF",
+  "#5F27CD",
+  "#00D2D3",
+  "#FF9F43",
+  "#EE5253",
+  "#10AC84",
+  "#341F97",
+  "#2E86DE",
+  "#E17055",
+  "#6C5CE7",
+  "#00B894",
+  "#E84393",
+  "#0984E3",
+  "#FDCB6E",
+  "#D63031",
+  "#00CEC9",
+  "#6AB04C",
+  "#30336B",
+  "#F0932B",
+  "#EB4D4B",
+  "#22A6B3",
+  "#BE2EDD",
+  "#4834D4",
+  "#7ED6DF",
+  "#E056FD",
+  "#686DE0",
+  "#130F40",
+  "#BADC58",
+  "#C7ECEE",
+  "#FF7979",
+  "#BADC58",
+  "#7ED6DF",
+  "#F9CA24",
+  "#F0932B",
+];
 const RADIAN = Math.PI / 180;
 
 const renderCustomizedLabel = ({
@@ -68,7 +118,8 @@ type GroupedStat = {
 
 function GroupByChart({ title, description, groupBy }: GroupByChartProps) {
   const [searchParams] = useSearchParams();
-  const currentValue = searchParams.get("period") || "all";
+  const currentValue =
+    searchParams.get("period") || localStorage.getItem("period") || "all";
   const { isLoading, groupedStats } = useGroupBy(
     groupBy,
     currentValue as ClickPeriodQuery,

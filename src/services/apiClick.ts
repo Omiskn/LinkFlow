@@ -1,5 +1,5 @@
-import { apiWithToken } from "@/lib/axios";
-import type { ClickPeriodQuery, GroupBy } from "@/types/clicks";
+import { api, apiWithToken } from "@/lib/axios";
+import type { ClickDTO, ClickPeriodQuery, GroupBy } from "@/types/clicks";
 
 export const clickService = {
   getStats: async () => {
@@ -23,6 +23,12 @@ export const clickService = {
     const { data: res } = await apiWithToken.get(
       `/clicks/links?period=${period}`,
     );
+
+    return res;
+  },
+
+  create: async ({ linkId, data }: ClickDTO) => {
+    const { data: res } = await api.post(`/clicks/${linkId}`, data);
 
     return res;
   },

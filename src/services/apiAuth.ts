@@ -50,4 +50,9 @@ export const authService = {
     });
     return res;
   },
+
+  getPublicProfile: async (username: string) => {
+    const { data: res } = await api.get(`/users/public-profile/${username}`);
+    return res;
+  },
 };

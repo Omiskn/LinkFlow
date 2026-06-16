@@ -19,6 +19,7 @@ import { ThemeProvider } from "./providers/theme-provider";
 // import { ThemeFontProvider } from "./providers/Font-theme-provider";
 // import { ThemeBorderProvider } from "./providers/Border-theme-Provider";
 import AppearanceProvider from "./providers/AppearanceProvider";
+import PublicProfilePage from "./pages/PublicProfilePage";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -54,6 +55,10 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/forgot_password" element={<ForgotPassword />} />
               <Route path="/verify_email" element={<VerifyEmailPage />} />
+              <Route
+                path="/public_profile/:username"
+                element={<PublicProfilePage />}
+              />
             </Routes>
           </BrowserRouter>
         </AppearanceProvider>

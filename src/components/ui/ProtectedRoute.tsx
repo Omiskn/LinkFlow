@@ -1,9 +1,9 @@
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Spinner } from "./Spinner";
 import { AxiosError } from "axios";
 import { useLogout } from "@/features/auth/hooks/useLogout";
+import FullPageSpinner from "../FullPageSpinner";
 
 function ProtectedRoute() {
   const navigate = useNavigate();
@@ -18,12 +18,7 @@ function ProtectedRoute() {
     }
   }, [currentUser, navigate, isLoading, error, logout]);
 
-  if (isLoading)
-    return (
-      <div className="h-screen bg-(--color-grey-50) flex justify-center items-center">
-        <Spinner className="size-16 text-(--color-primary-500)" />
-      </div>
-    );
+  if (isLoading) return <FullPageSpinner />;
 
   if (!currentUser) return null;
 

@@ -25,7 +25,7 @@ type AppearanceState = {
   colorTheme: ColorTheme;
   borderTheme: BorderTheme;
   fontTheme: FontTheme;
-  modeTheme: ModeTheme;
+  modeTheme?: ModeTheme;
 };
 
 type AppearanceContextType = {
@@ -96,12 +96,12 @@ export default function AppearanceProvider({
 
     didInitFromApi.current = true;
 
-    setSettings({
+    setSettings((prev) => ({
+      ...prev,
       colorTheme: setting.primary_color as ColorTheme,
       borderTheme: setting.button_style as BorderTheme,
       fontTheme: setting.font_style as FontTheme,
-      modeTheme: setting.theme_mode as ModeTheme,
-    });
+    }));
   }, [setting]);
 
   // =========================
@@ -135,7 +135,7 @@ export default function AppearanceProvider({
 
       root.classList.add(systemTheme);
     } else {
-      root.classList.add(settings.modeTheme);
+      root.classList.add(settings.modeTheme!);
     }
 
     // save localStorage
@@ -145,7 +145,7 @@ export default function AppearanceProvider({
 
     localStorage.setItem("fontTheme", settings.fontTheme);
 
-    localStorage.setItem("themeMode", settings.modeTheme);
+    localStorage.setItem("themeMode", settings.modeTheme!);
   }, [settings]);
 
   // =========================

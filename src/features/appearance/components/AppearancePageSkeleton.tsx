@@ -1,31 +1,24 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 
 export default function AppearancePageSkeleton() {
   return (
     <Card>
-      <CardHeader className="space-y-2">
-        <Skeleton className="h-7 w-40" />
-        <Skeleton className="h-4 w-72" />
-      </CardHeader>
+      <CardContent className="space-y-6">
+        <SettingRowSkeleton type="colors" />
+        <Separator />
 
-      <CardContent>
-        <div className="space-y-6">
-          <SettingRowSkeleton type="colors" />
-          <Separator />
+        <SettingRowSkeleton type="buttons" />
+        <Separator />
 
-          <SettingRowSkeleton type="buttons" />
-          <Separator />
+        <SettingRowSkeleton type="fonts" />
+        <Separator />
 
-          <SettingRowSkeleton type="fonts" />
-          <Separator />
+        <SettingRowSkeleton type="language" />
+        <Separator />
 
-          <SettingRowSkeleton type="language" />
-          <Separator />
-
-          <SettingRowSkeleton type="mode" />
-        </div>
+        <SettingRowSkeleton type="mode" />
       </CardContent>
     </Card>
   );

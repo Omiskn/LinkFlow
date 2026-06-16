@@ -21,7 +21,8 @@ import { LinksPerformanceSkeleton } from "./LinksPerformanceSkeleton";
 
 function LinksPerformance() {
   const [searchParams] = useSearchParams();
-  const currentValue = searchParams.get("period") || "all";
+  const currentValue =
+    searchParams.get("period") || localStorage.getItem("period") || "all";
 
   const { linksAnalytics, isLoading } = useLinksAnalytics(
     currentValue as ClickPeriodQuery,
@@ -52,6 +53,9 @@ function LinksPerformance() {
 
             <Tooltip
               contentStyle={{ backgroundColor: "var(--color-grey-50)" }}
+              cursor={{
+                fill: "var(--color-grey-300)",
+              }}
             />
 
             <Bar

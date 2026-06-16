@@ -28,7 +28,10 @@ function Filter({
 }: FilterProps) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentValue = searchParams.get(queryKey) || defaultValue;
+  const currentValue =
+    searchParams.get(queryKey) ||
+    localStorage.getItem(queryKey) ||
+    defaultValue;
 
   function handleChange(value: string) {
     const params = new URLSearchParams(searchParams);
@@ -37,6 +40,7 @@ function Filter({
       params.delete(queryKey);
     } else {
       params.set(queryKey, value);
+      localStorage.setItem(queryKey, currentValue);
     }
 
     setSearchParams(params);
